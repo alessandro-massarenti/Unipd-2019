@@ -21,7 +21,7 @@ int main(){
         for(int j = 0; j< lim2 && count<n_ele ; j++){
             cout << "r" << j << ":";
             for(int k = 0; k< lim3 && count<n_ele; k++){
-                cout << p[count] << " ";
+                cout <<  p[(j*lim3)+(lim2*lim3*i)+k] << " ";
                 count ++;
             }
             cout << endl;
