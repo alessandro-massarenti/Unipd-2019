@@ -19,7 +19,6 @@ int timeInS(){
     return (s + htos(h) + mtos(m));
 }
 
-
 int main() {
     
     bool ok = true;
@@ -35,36 +34,49 @@ int main() {
         for(int j = 0; j<100; j++ ){
             if(i==0){
                 status[i][j] = 0;
-            }else if(i==1){
+            }
+            /*
+            else if(i==1){
                 status[i][j] = partenza;
-            }else if(i==2){
+            }
+            */
+            else if(i==2){
                 status[i][j] = 0;
             }
         }
     }
     
+    // 0 = sensore
+    // 1 = tempo
+    // 2 = errore
+    
     while(sensore != -1){
-        cin >> sensore >> corridore;
-        tempo = timeInS();
-        
-        if(status[0][corridore] < sensore-1){
-            status[2][corridore] = 1;
-            ok=false;
-        }else{
-            status[0][corridore] = sensore;
-            if(sensore == 1){
-                if(tempo-1815 < status[1][corridore]){
-                    status[2][corridore] = 2;
-                    ok=false;
-                }else{
+        cin >> sensore;
+        if (sensore != -1){
+            cin >> corridore;
+            tempo = timeInS();
+            
+            if(status[0][corridore] < sensore-1){
+                status[2][corridore] = 1;
+                ok=false;
+            }else{
+                status[0][corridore] = sensore;
+                if(sensore == 0){
                     status[1][corridore] = tempo;
-                }
-            }else if(sensore == 2){
-                if(tempo-1811 < status[1][corridore]){
-                    status[2][corridore] = 2;
-                    ok=false;
-                }else{
-                    status[1][corridore] = tempo;
+                }else if(sensore == 1){
+                    if(tempo-1815 < status[1][corridore]){
+                        status[2][corridore] = 2;
+                        ok=false;
+                    }else{
+                        status[1][corridore] = tempo;
+                    }
+                }else if(sensore == 2){
+                    if(tempo-1811 < status[1][corridore]){
+                        status[2][corridore] = 2;
+                        ok=false;
+                    }else{
+                        status[1][corridore] = tempo;
+                    }
                 }
             }
         }
