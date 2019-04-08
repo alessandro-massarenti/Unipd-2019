@@ -1,16 +1,22 @@
 #include<iostream>
 using namespace std;
 
+// PRE : h e' un numero reale corrispondente alle ore
 int htos(int h){
     int s = h*3600;
     return s;
 }
+// POST : la funzione riporta i secondi che servono per formare le ore ricevute in ingresso
 
+// PRE : m e' un numero reale corrispondente ai minuti
 int mtos(int m){
     int s = m*60;
     return s;
 }
+// POST : la funzione riporta i secondi che servono per formare i minuti ricevuti in ingresso
 
+// PRE : h, m, s corrispondono ad un tempo in ore, minuti e secondi. h,m,s sono numeri reali.
+// R : Vengono inseriti nel programma separatamente ed in ordine.
 int timeInS(){
     int h,m,s;
     cin >> h;
@@ -18,6 +24,7 @@ int timeInS(){
     cin >> s;
     return (s + htos(h) + mtos(m));
 }
+// POST : la funzione riporta in output in secondi il tempo inserito all' interno della funzione se l' input rispetta i canoni della pre condizione.
 
 int main() {
     
@@ -30,6 +37,8 @@ int main() {
     partenza = timeInS();
     cout << "start" << endl;
     
+
+// PRE : i e' compreso tra 0 e 2, j e' compreso tra 0 e 100,status e' un array bi-dimensionale.
     for(int i = 0; i<2; i++){
         for(int j = 0; j<100; j++ ){
             if(i==0){
@@ -45,11 +54,15 @@ int main() {
             }
         }
     }
+// POST : lo strato 0 e lo strato 2 dello' array a tre dimensioni "status" vengono riempiti con il valore "0".
     
-    // 0 = sensore
-    // 1 = tempo
-    // 2 = errore
-    
+    // status[i][0]
+    // i => 0 = sensore
+    // i => 1 = tempo
+    // i => 2 = errore
+    // status[0][j]
+
+// PRE : sensore e' un numero intero e diverso da -1
     while(sensore != -1){
         cin >> sensore;
         if (sensore != -1){
@@ -81,7 +94,10 @@ int main() {
             }
         }
     }
+// R : l' array viene riempito con i dati catturati in input
+// POST : l' array contiene i dati relativi alla tipologia di sgarro del corridore nello strato "2" relazionato alla matricola del corridore
     
+// PRE : i e' compreso tra 0 ed il numero di partecipanti alla gara
     for(int i = 0; i< n_partecipanti; i++){
         if(status[2][i] == 1){
              cout << i << ": salto sensore" << endl;
@@ -89,6 +105,7 @@ int main() {
             cout << i << ": tempo sospetto" << endl;
         }
     }
+// POST : a seconda del tipo di sgarro del corridore viene stampato il relativo messaggio di errore in ordine di matricola del corridore
    
     if(ok){
         cout << "gara regolare" << endl;
